@@ -1,33 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Я люблю Дашу</title>
-<style>
-  body {
-    margin: 0;
-    background-color: #ffffff; /* белый фон */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Arial', sans-serif;
-    color: #e91e63; /* розовый цвет текста */
-  }
-  .heart {
-    font-size: 150px; /* большое сердечко */
-    color: #e91e63; /* розовый */
-    margin-bottom: 20px;
-    user-select: none;
-  }
-  .text {
-    font-size: 48px;
-    font-weight: bold;
-    text-align: center;
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>Я люблю Дашу</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
-  <div class="heart">❤️</div>
-  <div class="text">Я люблю Дашу</div>
+  <div class="animated-hearts">
+  </div>
+
+  <div class="container">
+    <h1>
+      Я люблю Дашу <span class="heart">❤</span>
+    </h1>
+    <div class="photo-frame">
+      <img src="/img/dasha.jpg" alt="Фотография Даши">
+    </div>
+    <div class="decorations">
+      <span class="star">★</span>
+      <span class="bow">🎀</span>
+      <span class="star">★</span>
+    </div>
+    <div class="audio-player">
+      <audio id="audio" src="/audio/track.mp3"></audio>
+      <button id="play-pause" aria-label="Play/Pause">▶</button>
+      <span id="track-status">Музыка выключена</span>
+    </div>
+  </div>
 </body>
+
+</html>
+<script>
+  const heartContainer = document.querySelector('.animated-hearts');
+  const heartTypes = ['💖', '💕', '💗', '💘', '💞', '💓', '💝'];
+
+  for (let i = 0; i < 30; i++) {
+    const heart = document.createElement('span');
+    heart.className = 'heart-float';
+    heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDelay = (Math.random() * 7) + 's';
+    heartContainer.appendChild(heart);
+  }
+
+  const audio = document.getElementById('audio');
+  const btn = document.getElementById('play-pause');
+  const status = document.getElementById('track-status');
+
+  btn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      btn.textContent = '⏸';
+      status.textContent = 'Музыка играет';
+    } else {
+      audio.pause();
+      btn.textContent = '▶';
+      status.textContent = 'Музыка выключена';
+    }
+  });
+
+  // Чтобы кнопка сразу корректно отображалась, если музыка auto-start
+  audio.onplay = () => {
+    btn.textContent = '⏸';
+    status.textContent = 'Музыка играет';
+  };
+  audio.onpause = () => {
+    btn.textContent = '▶';
+    status.textContent = 'Музыка выключена';
+  };
+</script>
