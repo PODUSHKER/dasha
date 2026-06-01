@@ -1,74 +1,58 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Я люблю Дашу</title>
-  <link rel="stylesheet" href="/styles/main.css">
-  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Настя | Неоновый плеер 💜</title>
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
-
 <body>
-  <div class="animated-hearts">
-  </div>
+    <!-- Фоновый визуализатор -->
+    <div class="background-visualizer" id="backgroundVisualizer">
+        <canvas id="bgCanvas"></canvas>
+    </div>
+    
+    <!-- Переливающийся фон -->
+    <div class="gradient-bg" id="gradientBg"></div>
+    
+    <!-- Милые парящие частицы -->
+    <div class="particles-container" id="particlesContainer"></div>
+    
+    <!-- Вспышки -->
+    <div class="flash-overlay" id="flashOverlay"></div>
+    
+    <!-- Основной контент -->
+    <div class="content">
+        <div class="player-card" id="playerCard">
+            <div class="word-box">
+                <div class="dynamic-word" id="changingWord">Настя</div>
+                <div class="word-shadow"></div>
+            </div>
+            
+            <div class="controls">
+                <button class="play-btn" id="playPauseBtn">
+                    <span class="play-icon" id="playIcon">▶</span>
+                </button>
+            </div>
+            
+            <!-- Регулировка громкости -->
+            <div class="volume-control">
+                <span class="volume-icon">🔊</span>
+                <input type="range" id="volumeSlider" min="0" max="100" value="70" class="volume-slider">
+                <span class="volume-value" id="volumeValue">70%</span>
+            </div>
+            
+            <div class="track-name" id="trackName">✨ Нажмите PLAY чтобы начать ✨</div>
+            
+            <!-- Милые индикаторы -->
+            <div class="cute-indicators">
+                <span class="cute-dot">💜</span>
+                <span class="cute-dot">💗</span>
+                <span class="cute-dot">💕</span>
+            </div>
+        </div>
+    </div>
 
-  <div class="container">
-    <h1>
-      Я люблю Дашу <span class="heart">❤</span>
-    </h1>
-    <div class="photo-frame">
-      <img src="/img/dasha.jpg" alt="Фотография Даши">
-    </div>
-    <div class="decorations">
-      <span class="star">★</span>
-      <span class="bow">🎀</span>
-      <span class="star">★</span>
-    </div>
-    <div class="audio-player">
-      <audio id="audio" src="/audio/track.mp3"></audio>
-      <button id="play-pause" aria-label="Play/Pause">▶</button>
-      <span id="track-status">Музыка выключена</span>
-    </div>
-  </div>
+    <script src="./scripts/script.js"></script>
 </body>
-
 </html>
-<script>
-  const heartContainer = document.querySelector('.animated-hearts');
-  const heartTypes = ['💖', '💕', '💗', '💘', '💞', '💓', '💝'];
-
-  for (let i = 0; i < 30; i++) {
-    const heart = document.createElement('span');
-    heart.className = 'heart-float';
-    heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
-    heart.style.left = Math.random() * 100 + '%';
-    heart.style.animationDelay = (Math.random() * 7) + 's';
-    heartContainer.appendChild(heart);
-  }
-
-  const audio = document.getElementById('audio');
-  const btn = document.getElementById('play-pause');
-  const status = document.getElementById('track-status');
-
-  btn.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play();
-      btn.textContent = '⏸';
-      status.textContent = 'Музыка играет';
-    } else {
-      audio.pause();
-      btn.textContent = '▶';
-      status.textContent = 'Музыка выключена';
-    }
-  });
-
-  // Чтобы кнопка сразу корректно отображалась, если музыка auto-start
-  audio.onplay = () => {
-    btn.textContent = '⏸';
-    status.textContent = 'Музыка играет';
-  };
-  audio.onpause = () => {
-    btn.textContent = '▶';
-    status.textContent = 'Музыка выключена';
-  };
-</script>
