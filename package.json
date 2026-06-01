@@ -1,25 +1,26 @@
 {
-  "name": "dashalove",
+  "name": "nasys",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/PODUSHKER/dasha#readme",
+  "bugs": {
+    "url": "https://github.com/PODUSHKER/dasha/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PODUSHKER/dasha.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "cookie-parser": "^1.4.7",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "express-handlebars": "^8.0.1",
-    "express-validator": "^7.2.1",
-    "hbs": "^4.2.0",
-    "jsonwebtoken": "^9.0.2",
-    "nodemon": "^3.1.10",
-    "sequelize": "^6.37.5",
-    "sqlite3": "^5.1.7",
-    "uuid": "^11.0.5"
+    "express": "^5.2.1",
+    "express-handlebars": "^9.0.1",
+    "hbs": "^4.2.1",
+    "nodemon": "^3.1.14"
   }
 }
